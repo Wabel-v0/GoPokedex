@@ -26,6 +26,16 @@ func getCommands() map[string]CliCommand {
 			usage: "Exits the program",
 			callback: commandExit,
 		},
+		"map":{
+			name: "map",
+			usage: "Prints the map of the pokemon world",
+			callback: commandMap,
+		},
+		"mapb":{
+			name: "mapb",
+			usage: "Prints the previous map of the pokemon world",
+			callback: commandMapb,
+		},
 	}
 	
 }

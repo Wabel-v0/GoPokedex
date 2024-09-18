@@ -1,0 +1,18 @@
+package internal
+
+import (
+	"net/http"
+	"time"
+)
+
+type Client struct {
+	httpClient http.Client
+}
+
+func NewClient(timeOut time.Duration) Client {
+	return Client{
+		httpClient: http.Client{
+			Timeout:timeOut ,
+		},
+	}
+}
