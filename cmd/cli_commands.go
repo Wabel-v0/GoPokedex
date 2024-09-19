@@ -63,6 +63,7 @@ func cleanInput(input string) []string {
 func Run(cfg *Config) {
 	fmt.Println("Welcome to the Pokedex CLI")
 	reader := bufio.NewScanner(os.Stdin)
+	var exploreName string
 	for {
 		fmt.Print("Pokedex > ")
 		reader.Scan()
@@ -77,13 +78,12 @@ func Run(cfg *Config) {
 			fmt.Println("Please provide a name to explore")
 			continue
 		}
-		if cmd.name == "explore" && len(userInput) > 2 {
-			fmt.Println("Make sure there are no spaces in the name")
-			continue
+		if len(userInput) >= 2 {
+			exploreName = userInput[1]
 		}
-		// to be continued
+
 		if ok {
-			err := cmd.callback(cfg, userInput[1])
+			err := cmd.callback(cfg, exploreName)
 			if err != nil {
 				fmt.Println("Error:", err)
 			}
