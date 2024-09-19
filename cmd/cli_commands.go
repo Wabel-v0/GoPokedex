@@ -18,7 +18,7 @@ type Config struct {
 type CliCommand struct {
 	name     string
 	usage    string
-	callback func(*Config) error
+	callback func(*Config, string) error
 }
 
 func getCommands() map[string]CliCommand {
@@ -43,6 +43,11 @@ func getCommands() map[string]CliCommand {
 			usage:    "Prints the previous map of the pokemon world",
 			callback: commandMapb,
 		},
+		"explore": {
+			name:     "explore",
+			usage:    "Explore the pokemon world",
+			callback: commandExplore,
+		},
 	}
 
 }
@@ -62,12 +67,23 @@ func Run(cfg *Config) {
 		fmt.Print("Pokedex > ")
 		reader.Scan()
 		userInput := cleanInput(reader.Text())
+
+		cmd, ok := getCommands()[userInput[0]]
+		// checing the user input
 		if len(userInput) == 0 {
 			continue
 		}
-		cmd, ok := getCommands()[userInput[0]]
+		if cmd.name == "explore" && len(userInput) == 1 {
+			fmt.Println("Please provide a name to explore")
+			continue
+		}
+		if cmd.name == "explore" && len(userInput) > 2 {
+			fmt.Println("Make sure there are no spaces in the name")
+			continue
+		}
+		// to be continued
 		if ok {
-			err := cmd.callback(cfg)
+			err := cmd.callback(cfg, userInput[1])
 			if err != nil {
 				fmt.Println("Error:", err)
 			}

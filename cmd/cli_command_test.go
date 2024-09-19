@@ -3,29 +3,30 @@ package cmd
 import (
 	"testing"
 )
+
 func TestCliCommand(t *testing.T) {
 	tests := []struct {
-		input string
+		input    string
 		expected []string
 	}{
 		{
-			input: "help",
+			input:    "help",
 			expected: []string{"help"},
 		},
 		{
-			input: "    ",
+			input:    "    ",
 			expected: []string{},
 		},
 		{
-			input: "baba json",
+			input:    "baba json",
 			expected: []string{"baba", "json"},
 		},
 		{
-			input: "exit from the command",
+			input:    "exit from the command",
 			expected: []string{"exit", "from", "the", "command"},
 		},
 	}
-	for i,tc := range tests {
+	for i, tc := range tests {
 		t.Run("TestCliCommand", func(t *testing.T) {
 			got := cleanInput(tc.input)
 			if len(got) != len(tc.expected) {
@@ -36,9 +37,8 @@ func TestCliCommand(t *testing.T) {
 					t.Errorf("Test %d: Expected %v, got %v", i, tc.expected, got)
 				}
 			}
-		
 
-	})
+		})
 
-}
+	}
 }

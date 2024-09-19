@@ -8,9 +8,9 @@ import (
 	"github.com/mohalw44/gopokedex/internal/pokecache"
 )
 
-func (c *Client) CallPokeApi(pageUrl *string) (Pokedex, error) {
+func (c *Client) LocationApi(pageUrl *string) (Pokedex, error) {
 	var pokedex Pokedex
-	url := "https://pokeapi.co/api/v2/location-area/"
+	url := baseURL + "location-area/"
 	if pageUrl != nil {
 		url = *pageUrl
 	}

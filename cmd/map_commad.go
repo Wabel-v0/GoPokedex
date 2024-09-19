@@ -2,8 +2,8 @@ package cmd
 
 import "fmt"
 
-func commandMap(cfg *Config) error {
-	resp, err := cfg.Client.CallPokeApi(cfg.NextURL)
+func commandMap(cfg *Config, name string) error {
+	resp, err := cfg.Client.LocationApi(cfg.NextURL)
 	if err != nil {
 		return err
 	}
@@ -15,12 +15,12 @@ func commandMap(cfg *Config) error {
 	return nil
 }
 
-func commandMapb(cfg *Config) error {
+func commandMapb(cfg *Config, name string) error {
 	if cfg.PrevURL == nil {
 		fmt.Println("No previous page")
 		return nil
 	}
-	resp, err := cfg.Client.CallPokeApi(cfg.PrevURL)
+	resp, err := cfg.Client.LocationApi(cfg.PrevURL)
 	if err != nil {
 		return err
 	}
