@@ -1,4 +1,4 @@
-package internal
+package pokeapi
 
 import (
 	"net/http"
@@ -9,10 +9,11 @@ type Client struct {
 	httpClient http.Client
 }
 
-func NewClient(timeOut time.Duration) Client {
+func NewClient(timeout time.Duration) Client {
 	return Client{
 		httpClient: http.Client{
-			Timeout:timeOut ,
+			Timeout: timeout,
 		},
 	}
+
 }
