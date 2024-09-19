@@ -24,6 +24,8 @@ func commandMapb(cfg *Config) error {
 	if err != nil {
 		return err
 	}
+	cfg.NextURL = resp.Next
+	cfg.PrevURL = resp.Previous
 	for _, location := range resp.Results {
 		fmt.Println(location.Name)
 	}

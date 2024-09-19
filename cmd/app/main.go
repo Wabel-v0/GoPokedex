@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"time"
 
 	"github.com/mohalw44/gopokedex/cmd"
@@ -13,7 +12,6 @@ func main() {
 	cfg := &cmd.Config{
 		Client: newClient,
 	}
-	fmt.Println(newClient)
 	cmd.Run(cfg)
 
 }
