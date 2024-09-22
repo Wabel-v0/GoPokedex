@@ -68,7 +68,7 @@ func cleanInput(input string) []string {
 func Run(cfg *Config) {
 	fmt.Println("Welcome to the Pokedex CLI")
 	reader := bufio.NewScanner(os.Stdin)
-	var exploreName string
+	var name string
 	for {
 		fmt.Print("Pokedex > ")
 		reader.Scan()
@@ -84,11 +84,11 @@ func Run(cfg *Config) {
 			continue
 		}
 		if len(userInput) >= 2 {
-			exploreName = userInput[1]
+			name = userInput[1]
 		}
 
 		if ok {
-			err := cmd.callback(cfg, exploreName)
+			err := cmd.callback(cfg, name)
 			if err != nil {
 				fmt.Println("Error:", err)
 			}

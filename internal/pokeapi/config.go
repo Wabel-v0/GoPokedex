@@ -1,6 +1,6 @@
 package pokeapi
 
-type Pokedex struct {
+type PokeLocation struct {
 	Count    int     `json:"count"`
 	Next     *string `json:"next"`
 	Previous *string `json:"previous"`

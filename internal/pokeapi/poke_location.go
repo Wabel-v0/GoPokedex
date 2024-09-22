@@ -8,8 +8,8 @@ import (
 	"github.com/mohalw44/gopokedex/internal/pokecache"
 )
 
-func (c *Client) LocationApi(pageUrl *string) (Pokedex, error) {
-	var pokedex Pokedex
+func (c *Client) LocationApi(pageUrl *string) (PokeLocation, error) {
+	var pokedex PokeLocation
 	url := baseURL + "location-area/"
 	if pageUrl != nil {
 		url = *pageUrl
@@ -24,19 +24,19 @@ func (c *Client) LocationApi(pageUrl *string) (Pokedex, error) {
 
 	resp, err := http.Get(url)
 	if err != nil {
-		return Pokedex{}, err
+		return PokeLocation{}, err
 
 	}
 	defer resp.Body.Close()
 
 	data, err := io.ReadAll(resp.Body)
 	if err != nil {
-		return Pokedex{}, err
+		return PokeLocation{}, err
 
 	}
 	cache.Add(url, data)
 	if err = json.Unmarshal(data, &pokedex); err != nil {
-		return Pokedex{}, err
+		return PokeLocation{}, err
 	}
 	return pokedex, nil
 
