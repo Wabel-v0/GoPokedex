@@ -48,6 +48,11 @@ func getCommands() map[string]CliCommand {
 			usage:    "Explore the pokemon world",
 			callback: commandExplore,
 		},
+		"catch": {
+			name:     "catch",
+			usage:    "Catch a pokemon",
+			callback: commandCatch,
+		},
 	}
 
 }
