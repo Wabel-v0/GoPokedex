@@ -3,6 +3,7 @@ package cmd
 import (
 	"fmt"
 	"math/rand"
+	"time"
 )
 
 func commandCatch(cfg *Config, input string) error {
@@ -11,16 +12,17 @@ func commandCatch(cfg *Config, input string) error {
 	if err != nil {
 		return err
 	}
-	r := rand.Float64()
-	chance := min(0.9, float64(poke.BaseExperience)/100)
-	fmt.Println(r, chance)
-	if r > chance {
-		fmt.Println("You caught a", poke.Name)
+	
+	chance := rand.Intn(poke.BaseExperience)
+	
+	if chance > 35 {
+		fmt.Printf("%s ran away", poke.Name)
 
-	} else {
-		fmt.Println("The pokemon ran away")
-	}
-
+	} 
+	time.Sleep(1 * time.Second)
+	fmt.Printf("You caught %s \n", poke.Name)
+	cfg.PokemonList[poke.Name] = poke
+	
 	return nil
 
 }

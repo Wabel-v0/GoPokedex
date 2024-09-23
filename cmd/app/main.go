@@ -11,6 +11,7 @@ func main() {
 	newClient := pokeapi.NewClient(5 * time.Second)
 	cfg := &cmd.Config{
 		Client: newClient,
+		PokemonList: map[string]pokeapi.PokemonInfo{},
 	}
 	cmd.Run(cfg)
 
