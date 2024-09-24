@@ -12,17 +12,18 @@ func commandCatch(cfg *Config, input string) error {
 	if err != nil {
 		return err
 	}
-	
-	chance := rand.Intn(poke.BaseExperience)
-	
-	if chance > 35 {
-		fmt.Printf("%s ran away", poke.Name)
 
-	} 
+	chance := rand.Intn(poke.BaseExperience)
+
 	time.Sleep(1 * time.Second)
+	if chance > 35 {
+		fmt.Printf("%s ran away \n", poke.Name)
+		return nil
+
+	}
 	fmt.Printf("You caught %s \n", poke.Name)
 	cfg.PokemonList[poke.Name] = poke
-	
+
 	return nil
 
 }
