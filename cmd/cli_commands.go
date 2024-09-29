@@ -10,10 +10,10 @@ import (
 )
 
 type Config struct {
-	Client  pokeapi.Client
-	NextURL *string
-	PrevURL *string
-	PokemonList map[string]pokeapi.PokemonInfo 
+	Client      pokeapi.Client
+	NextURL     *string
+	PrevURL     *string
+	PokemonList map[string]pokeapi.PokemonInfo
 }
 
 type CliCommand struct {
@@ -54,13 +54,17 @@ func getCommands() map[string]CliCommand {
 			usage:    "Catch a pokemon",
 			callback: commandCatch,
 		},
-		"pokedex":{
-			name: "pokedex",
-			usage: "show the pokemon you caught", 
+		"pokedex": {
+			name:     "pokedex",
+			usage:    "show the pokemon you caught",
 			callback: commandPokedex,
 		},
+		"inspect": {
+			name:     "inspect",
+			usage:    "inspect the pokemon",
+			callback: commandInspect,
+		},
 	}
-
 }
 
 func cleanInput(input string) []string {
@@ -68,7 +72,6 @@ func cleanInput(input string) []string {
 	words := strings.Fields(word)
 
 	return words
-
 }
 
 func Run(cfg *Config) {
